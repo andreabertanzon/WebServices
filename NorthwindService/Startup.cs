@@ -31,6 +31,8 @@ namespace NorthwindService
         public void ConfigureServices(IServiceCollection services)
         {
             string databasePath = Path.Combine("..", "Northwind.db");
+
+            // configuring dependency injection
             services.AddDbContext<Northwind>(options => options.UseSqlite($"Data Source={databasePath}"));
             services.AddControllers(options =>
             {
