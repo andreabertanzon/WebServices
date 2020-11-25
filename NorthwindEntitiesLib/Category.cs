@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Packt.Shared
+namespace Entities.Shared
 {
     [Index(nameof(CategoryName), Name = "CategoryName")]
     public partial class Category

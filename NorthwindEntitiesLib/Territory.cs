@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Packt.Shared
+namespace Entities.Shared
 {
     [Keyless]
     public partial class Territory

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Packt.Shared
+namespace Entities.Shared
 {
     public partial class Northwind : DbContext
     {

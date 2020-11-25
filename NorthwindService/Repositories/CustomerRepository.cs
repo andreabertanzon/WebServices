@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Packt.Shared;
+using Entities.Shared;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

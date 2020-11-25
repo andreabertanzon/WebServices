@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NorthwindService.Repositories;
-using Packt.Shared;
+using Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace NorthwindService.Controllers
     {
         private ICustomerRepository repo;
 
-        // constructor inhection of repository. registered in startup
+        // constructor injection of repository. registered in startup
         public CustomersController(ICustomerRepository repo)
         {
             this.repo = repo;

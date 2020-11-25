@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Packt.Shared
+namespace Entities.Shared
 {
     [Index(nameof(City), Name = "City")]
     [Index(nameof(CompanyName), Name = "CompanyNameCustomers")]

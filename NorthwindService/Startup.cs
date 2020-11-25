@@ -12,7 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
-using Packt.Shared;
+using Entities.Shared;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using NorthwindService.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
@@ -59,6 +59,7 @@ namespace NorthwindService
             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             
             // Registering the swagger generator and define a 
             // swagger document for Northwind Service

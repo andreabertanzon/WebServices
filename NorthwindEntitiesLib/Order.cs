@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Packt.Shared
+namespace Entities.Shared
 {
     [Index(nameof(CustomerID), Name = "CustomerID")]
     [Index(nameof(CustomerID), Name = "CustomersOrders")]
