@@ -18,6 +18,8 @@ using NorthwindService.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication;
+using NorthwindService.Handlers;
 
 namespace NorthwindService
 {
@@ -60,6 +62,7 @@ namespace NorthwindService
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions,BasicAuthenticationHandler>("BasicAuthentication",null);
             
             // Registering the swagger generator and define a 
             // swagger document for Northwind Service
@@ -80,6 +83,8 @@ namespace NorthwindService
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

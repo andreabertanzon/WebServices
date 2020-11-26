@@ -5,10 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NorthwindService.Controllers
 {
     // base address: api/customers
+    
     [Route("api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
@@ -28,6 +30,7 @@ namespace NorthwindService.Controllers
         /// <returns>List of Customers</returns>
         // GET: api/customers
         // GET: api/customers/?country=[country]
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Customer>))]
         public async Task<IEnumerable<Customer>> GetCustomers(string country)
@@ -44,6 +47,7 @@ namespace NorthwindService.Controllers
         }
 
         // GET: api/customers/[id]
+        [AllowAnonymous]
         [HttpGet("{id}", Name = nameof(GetCustomer))]
         [ProducesResponseType(200, Type = typeof(Customer))]
         [ProducesResponseType(404)]
@@ -59,6 +63,7 @@ namespace NorthwindService.Controllers
 
         //POST: api/customers
         //BODY: Customer(JSON, XML)
+        [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(Customer))]
         [ProducesResponseType(400)]
@@ -82,6 +87,7 @@ namespace NorthwindService.Controllers
 
         // PUT: api/customers/[id]
         // BODY: Customer (JSON, XML)
+        [AllowAnonymous]
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -110,6 +116,7 @@ namespace NorthwindService.Controllers
         }
 
         // DELETE: api/customers/[id]
+        [AllowAnonymous]
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

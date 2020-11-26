@@ -1,4 +1,5 @@
 ﻿using Entities.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NorthwindService.Repositories;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace NorthwindService.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeesController : ControllerBase
