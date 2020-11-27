@@ -20,6 +20,10 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication;
 using NorthwindService.Handlers;
+using NorthwindService.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace NorthwindService
 {
@@ -38,8 +42,35 @@ namespace NorthwindService
             //setting up the database connection
             string databasePath = Path.Combine("..", "Northwind.db");
 
-            // configuring dependency injection
+           
             services.AddDbContext<Northwind>(options => options.UseSqlite($"Data Source={databasePath}"));
+            var jwtSection = Configuration.GetSection("JWTSettings");
+            // services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions,BasicAuthenticationHandler>("BasicAuthentication",null);
+            var appSettings = jwtSection.Get<JWTSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.SecretKey);
+            
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = true;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+
+                };
+            });
+
+
+            services.Configure<JWTSettings>(jwtSection);
+
             services.AddControllers(options =>
             {
                 Console.WriteLine("Default Output Formatters:");
@@ -62,8 +93,7 @@ namespace NorthwindService
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions,BasicAuthenticationHandler>("BasicAuthentication",null);
-            
+
             // Registering the swagger generator and define a 
             // swagger document for Northwind Service
             services.AddSwaggerGen(options =>

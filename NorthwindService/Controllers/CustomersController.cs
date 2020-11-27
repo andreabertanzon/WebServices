@@ -63,7 +63,6 @@ namespace NorthwindService.Controllers
 
         //POST: api/customers
         //BODY: Customer(JSON, XML)
-        [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(Customer))]
         [ProducesResponseType(400)]
@@ -87,7 +86,6 @@ namespace NorthwindService.Controllers
 
         // PUT: api/customers/[id]
         // BODY: Customer (JSON, XML)
-        [AllowAnonymous]
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -116,7 +114,6 @@ namespace NorthwindService.Controllers
         }
 
         // DELETE: api/customers/[id]
-        [AllowAnonymous]
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

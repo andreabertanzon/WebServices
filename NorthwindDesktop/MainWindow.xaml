@@ -1,0 +1,23 @@
+﻿<Window x:Class="NorthwindDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NorthwindDesktop"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <Button Click="Button_Click" Content="Load Customers"/>
+        <ListView Name="ListView1" DataContext="{Binding Customers}" MinHeight="300" MaxHeight="400">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Mouse.MouseUp="StackPanel_MouseUp">
+                        <TextBlock Text="{Binding CustomerID}"/>
+                        <TextBlock Text="{Binding ContactName}"/>
+                    </StackPanel>
+                        
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Window>

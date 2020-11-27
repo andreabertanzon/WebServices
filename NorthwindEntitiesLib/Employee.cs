@@ -70,5 +70,7 @@ namespace Entities.Shared
 
         [InverseProperty(nameof(Order.Employee))]
         public virtual ICollection<Order> Orders { get; set; }
+        [NotMapped]
+        public object Token { get; set; }
     }
 }
